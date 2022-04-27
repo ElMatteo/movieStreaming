@@ -1,0 +1,62 @@
+fieldset {
+    padding-bottom: 20px;
+}
+
+.errorText {
+    text-align: center;
+    font-size: 0.9em;
+    color:red;
+    padding-top: 10px;
+  }
+
+.validText {
+    text-align: center;
+    font-size: 0.9em;
+    color:green;
+    padding-top: 10px;
+  }
+
+.flex-item {
+    width: 100%;
+    height: auto;
+    border: 1px black solid;
+}
+
+.cent {
+    text-align:center
+}
+
+.d {
+    padding-left: 15px;
+}
+
+.de {
+    margin: 15px;
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px black solid;
+    margin: 0 auto;
+}
+
+.classImg{
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.classImg:hover{
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.classImg:hover figure img{
+    -webkit-transform: scale(1);
+	transform: scale(1);
+}

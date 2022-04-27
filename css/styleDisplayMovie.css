@@ -1,0 +1,23 @@
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.classImg{
+    text-align: center;
+}
+
+.classMovie {
+    margin: 0 auto;
+    width: 65%;
+    height: 900px;
+    margin-top: 0;
+}
+
+.titleMovie {
+    text-align: center;
+    font-size: 50px;
+}
+
+.descMovie {
+    font-size: 20px;
+}
