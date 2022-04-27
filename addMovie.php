@@ -37,12 +37,8 @@ if(!isset($_SESSION['username'])){
     </form>
     </div>
     <?php
-    echo('wtf');
-
     if(isset($_POST['moviename']) && isset($_POST['year']) && isset($_POST['author']) && isset($_POST['description']) && isset($_POST['duration'])){
-        echo('Je suis désespérer');
         if(!empty($_POST['moviename']) && !empty($_POST['year']) && !empty($_POST['author']) && !empty($_POST['description']) && !empty($_POST['duration'])){
-            echo('OK');
             $moviename = $_POST['moviename'];
             $year = $_POST['year'];
             $author = $_POST['author'];
@@ -72,9 +68,7 @@ if(!isset($_SESSION['username'])){
                 echo('<p class="errorText">Movie already in database !</p>');
             }
         } else {
-            echo('test');
         }
-    } else {
     }
 
     $query = "SELECT * FROM movielist";
