@@ -16,9 +16,26 @@ if(!isset($_SESSION['username'])){
     <link href='css/cssAddMovie.css' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">    
-    <title>Document</title>
+    <title>ADMIN</title>
 </head>
 <body>
+<div class="topnav">
+  <div class="left">
+  <a href="index.php">Home</a>
+  <a href="about.php">About</a>
+  <a href="contact.php">Contact</a>
+  <?php if(isset($_SESSION['username'])){if($_SESSION['username'] == "ADMIN") {echo('<a class="active" href="addMovie.php">ADMIN</a>');}}?>
+  </div>
+  <?php if(isset($_SESSION['username'])) {echo("<div class='right'><form action='' method='POST'><button type='submit' class='btnDisc' name='disconnect'>Disconnect</button></form></div>");}
+  else {echo('<a href="register.php">Sign up</a><a href="connexion.php">Sign in</a>');}
+  ?>
+  <div class="search-container">
+    <form action="" method="POST">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>
 <div class="wrap">
     <form action="" method="POST" enctype='multipart/form-data'>
         <fieldset>
@@ -27,7 +44,7 @@ if(!isset($_SESSION['username'])){
                 <input type="text" name="year" placeholder="Year"/>
                 <input type="text" name="author" placeholder="Author"/>
                 <input type="text" name="duration" placeholder="Duration"/><br><br>
-                <input type="text" name="description" placeholder="Description"><br><br>
+                <textarea name="description" placeholder="Description"></textarea><br><br>
                 <label for="vid">Select video: </label>
                 <input type="file" name="vid" id ="vid" accept="video/*"/><br><br>
                 <label for="ima">Select image: </label>
@@ -39,10 +56,11 @@ if(!isset($_SESSION['username'])){
     <?php
     if(isset($_POST['moviename']) && isset($_POST['year']) && isset($_POST['author']) && isset($_POST['description']) && isset($_POST['duration'])){
         if(!empty($_POST['moviename']) && !empty($_POST['year']) && !empty($_POST['author']) && !empty($_POST['description']) && !empty($_POST['duration'])){
-            $moviename = $_POST['moviename'];
+            
+            $moviename = htmlspecialchars($_POST['moviename'],ENT_QUOTES);
             $year = $_POST['year'];
             $author = $_POST['author'];
-            $description = $_POST['description'];
+            $description = htmlspecialchars($_POST["description"],ENT_QUOTES);
             $duration = $_POST['duration']; 
             $query = "SELECT * FROM movielist WHERE nameMovie = '$moviename'";
             $result = mysqli_query($con,$query);
@@ -69,79 +87,6 @@ if(!isset($_SESSION['username'])){
             }
         } else {
         }
-    }
-
-    $query = "SELECT * FROM movielist";
-    $result = mysqli_query($con,$query);
-    $comp = 0;
-    while($row = mysqli_fetch_assoc($result)){
-            if($comp == 0){
-                echo('<div class ="flex-container">');
-                $pImg = $row['pathImage'];
-                $nMov = $row['nameMovie'];
-                $desc = $row['descriptionMovie'];
-                $auth = $row['authorMovie'];
-                $dur = $row['durationMovie'];
-                $ann = $row['yearMovie'];
-                echo("
-                <div class='flex-item'>
-                <div class='classImg'>
-                <a href='displayMovie.php?movieName=$nMov'>
-                <img src='$pImg' style='width: 500px'>
-                </a>
-                </div>
-                <p class='d'>".$dur."</p>
-                <p class='cent'>".$nMov." - ".$ann."</p>
-                <p class='cent'>Directed by ".$auth."</p><br>
-                <p class='de'>".$desc."</p><br>
-                </div>
-                ");
-                $comp++;
-            } else if($comp == 3){
-                echo("</div>");
-                echo('<div class ="flex-container">');
-                $pImg = $row['pathImage'];
-                $nMov = $row['nameMovie'];
-                $desc = $row['descriptionMovie'];
-                $auth = $row['authorMovie'];
-                $dur = $row['durationMovie'];
-                $ann = $row['yearMovie'];
-                echo("
-                <div class='flex-item'>
-                <div class='classImg'>
-                <a href='displayMovie.php?movieName=$nMov'>
-                <img src='$pImg' style='width: 500px'>
-                </a>
-                </div>
-                <p class='d'>".$dur."</p>
-                <p class='cent'>".$nMov." - ".$ann."</p>
-                <p class='cent'>Directed by ".$auth."</p><br>
-                <p class='de'>".$desc."</p><br>
-                </div>
-                ");
-                $comp++;
-            } else {
-            $pImg = $row['pathImage'];
-            $nMov = $row['nameMovie'];
-            $desc = $row['descriptionMovie'];
-            $auth = $row['authorMovie'];
-            $dur = $row['durationMovie'];
-            $ann = $row['yearMovie'];
-            echo("
-            <div class='flex-item'>
-            <div class='classImg'>
-            <a href='displayMovie.php?movieName=$nMov'>
-            <img src='$pImg' style='width: 500px'>
-            </a>
-            </div>
-            <p class='d'>".$dur."</p>
-            <p class='cent'>".$nMov." - ".$ann."</p>
-            <p class='cent'>Directed by ".$auth."</p><br>
-            <p class='de'>".$desc."</p><br>
-            </div>
-            ");
-            $comp++;
-            }
     }
     ?>
 </body>

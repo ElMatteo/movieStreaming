@@ -5,7 +5,7 @@ if(!isset($_SESSION['username'])){
     header('Location: php/connexion.php');
 }
 
-$movieName = $_GET['movieName'];
+$movieName = htmlspecialchars($_GET['movieName'],ENT_QUOTES);
 $query = "SELECT * FROM movielist WHERE nameMovie = '$movieName'";
 $result = mysqli_query($con,$query);
 while($row = mysqli_fetch_assoc($result)){

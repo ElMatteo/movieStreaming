@@ -11,9 +11,22 @@ require_once('php/db.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='css/connexion.css' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Sign in</title>
 </head>
 <body>
+<div class="topnav">
+    <div class="left">
+        <a href="index.php">Home</a>
+        <a href="">About</a>
+        <a href="contact.php">Contact</a>
+        <?php if(isset($_SESSION['username'])){if($_SESSION['username'] == "ADMIN") {echo('<a href="addMovie.php">ADMIN</a>');}}?>
+    </div>
+        <?php if(isset($_SESSION['username'])) {echo("<div class='right'><form action='' method='POST'><button type='submit' class='btnDisc' name='disconnect'>Disconnect</button></form></div>");}
+        else {echo('<a href="register.php">Sign up</a><a class="active" href="connexion.php">Sign in</a>');}
+        ?>
+</div>
+
 <div class="wrap">
     <form action="" method="POST">
         <fieldset>
