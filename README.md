@@ -1,4 +1,9 @@
 # Movie Streaming
+This is a personal project to train myself in php, sql, html and css. 
+
+This is a site that allows you to watch the trailers of the 50 most watched movies in the history of cinema.
+
+You can also search the bvia the search bar
 ## How to launch the project?
 ```sh
 • Download WAMP
