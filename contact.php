@@ -124,11 +124,11 @@ if(isset($_POST['message']) && isset($_POST['object']) && isset($_POST['nickname
             $mail2->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
             $mail2->Host = 'smtp.gmail.com';
             $mail2->Port = 465;
-            $mail2->Username = 'zolaskiki@gmail.com';
-            $mail2->Password = 'passworddeouf';
+            $mail2->Username = 'YOUR_EMAIL';
+            $mail2->Password = 'YOUR_PASSWORD';
         
-            $mail2->setFrom('zolaskiki@gmail.com', 'Mate Finder');
-            $mail2->addAddress('zolaskiki@gmail.com');
+            $mail2->setFrom('YOUR_EMAIL', 'Mate Finder');
+            $mail2->addAddress('YOUR_EMAIL');
         
             $mail2->isHTML(true);
             $mail2->Subject = 'movieStreaming - You received a message from ' . $nicknamee;
